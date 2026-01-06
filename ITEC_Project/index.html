@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITEC 203: The Java Hub Master Simulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h3>Parine't Magkape</h3>
+            <p>Advanced Queue Simulation Model</p>
+        </div>
+        
+        <div class="input-group">
+            <label>Customer Arrivals (Per Min):</label>
+            <input type="number" id="arrivalRate" value="45">
+        </div>
+        <div class="input-group">
+            <label>Barista Speed (Per Min):</label>
+            <input type="number" id="serviceSpeed" value="20">
+        </div>
+        <div class="input-group">
+            <label>Number of Baristas:</label>
+            <input type="number" id="baristaCount" value="2" min="1" max="5">
+        </div>
+        <div class="input-group">
+            <label>Shop Seats:</label>
+            <input type="number" id="maxSeats" value="15">
+        </div>
+        
+        <button class="btn start-btn" id="startBtn" onclick="runSimulation()">OPEN SHOP</button>
+        <button class="btn reset-btn" onclick="location.reload()">RESET DAY</button>
+        
+        <div class="scale-note">
+            <b>Simulation Logic:</b><br>
+            1 Second = 1 Simulated Minute<br>
+            Parallel Service Implementation
+        </div>
+    </aside>
+
+    <main class="content">
+        <header class="shop-header">
+            <h1>☕ Parine't Magkape</h1>
+            <div id="statusText" class="status-badge">STATUS: CLOSED</div>
+        </header>
+
+        <section class="simulation-grid">
+            <div class="visual-area">
+                <div id="baristaStationContainer" class="barista-grid"></div>
+                
+                <div class="queue-section">
+                    <h4>Customer Waiting Line (Snaking)</h4>
+                    <div id="queueDisplay" class="queue-wrap-zone"></div>
+                </div>
+
+                <div class="seating-section">
+                    <h4>Dining Area (Seating Availability)</h4>
+                    <div id="seatingDisplay" class="seating-grid"></div>
+                </div>
+            </div>
+
+            <div class="stats-panel">
+                <div class="stat-card">
+                    <label>CURRENT QUEUE</label>
+                    <div id="qLen" class="stat-value">0</div>
+                </div>
+                <div class="stat-card">
+                    <label>SEATS OCCUPIED</label>
+                    <div id="sOcc" class="stat-value">0</div>
+                </div>
+                <div class="stat-card takeout">
+                    <label>TAKEOUT ORDERS</label>
+                    <div id="tTakeout" class="stat-value">0</div>
+                </div>
+                <div class="stat-card total">
+                    <label>TOTAL CUSTOMERS</label>
+                    <div id="tServed" class="stat-value">0</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

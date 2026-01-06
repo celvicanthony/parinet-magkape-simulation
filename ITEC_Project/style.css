@@ -1,0 +1,103 @@
+:root {
+    --coffee-dark: #2d1b0e;
+    --coffee-mid: #6f4e37;
+    --coffee-light: #f5ebe0;
+    --accent: #d4a373;
+    --seat-empty: #e0e0e0;
+    --seat-full: #8b4513;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    display: flex;
+    background-color: #faf7f2;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 340px;
+    background: var(--coffee-dark);
+    color: white;
+    padding: 40px 25px;
+    border-right: 6px solid var(--accent);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.3);
+    z-index: 10;
+}
+
+.sidebar-header h3 { margin: 0; color: var(--accent); letter-spacing: 3px; font-size: 1.5rem; }
+.sidebar-header p { font-size: 0.8rem; opacity: 0.7; margin-top: 5px; }
+
+.input-group { margin-top: 25px; }
+.input-group label { display: block; margin-bottom: 8px; font-weight: bold; color: var(--accent); font-size: 0.85rem; }
+.input-group input {
+    width: 100%; padding: 12px; border-radius: 6px; border: none;
+    background: #3e2a1c; color: white; font-size: 1rem; box-sizing: border-box;
+}
+
+.btn { width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px; border: none; transition: 0.3s; }
+.start-btn { background: var(--accent); color: white; }
+.start-btn:hover { background: #b08558; }
+.reset-btn { background: transparent; color: #ccae94; border: 1px solid #ccae94; }
+
+.scale-note { margin-top: auto; font-size: 0.75rem; opacity: 0.5; text-align: center; line-height: 1.4; }
+
+/* Main Content Area */
+.content { flex: 1; padding: 30px; display: flex; flex-direction: column; overflow-y: auto; }
+.shop-header { text-align: center; margin-bottom: 20px; }
+.shop-header h1 { font-size: 2.8rem; letter-spacing: 6px; margin: 0; color: var(--coffee-dark); }
+.status-badge { display: inline-block; padding: 6px 25px; border-radius: 20px; background: #ddd; font-weight: bold; margin-top: 10px; transition: 0.5s; }
+
+.simulation-grid { display: flex; gap: 25px; height: 100%; }
+
+/* Visual Simulation Zone */
+.visual-area {
+    flex: 3; background: white; border-radius: 25px; padding: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05); display: flex; flex-direction: column;
+    position: relative;
+}
+
+/* Multi-Barista Layout */
+.barista-grid { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
+.counter-box { 
+    width: 160px; background: var(--coffee-mid); color: white; padding: 15px; 
+    border-radius: 15px; text-align: center; position: relative; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.barista-id { font-size: 0.65rem; background: var(--accent); color: var(--coffee-dark); padding: 2px 8px; border-radius: 10px; font-weight: bold; }
+.barista-emoji { font-size: 2.2rem; margin: 5px 0; }
+
+.progress-container { width: 100%; height: 8px; background: rgba(255,255,255,0.2); border-radius: 4px; overflow: hidden; margin: 8px 0; }
+.progress-bar { width: 0%; height: 100%; background: var(--accent); transition: width linear; }
+.action-label { font-size: 0.65rem; font-weight: bold; letter-spacing: 1px; color: var(--coffee-light); }
+
+/* Queue Styling - Snaking Logic */
+.queue-section h4, .seating-section h4 { margin: 0 0 10px 0; font-size: 0.9rem; color: var(--coffee-mid); text-transform: uppercase; }
+.queue-wrap-zone {
+    display: flex; flex-wrap: wrap; gap: 8px; padding: 15px;
+    border: 2px dashed var(--coffee-light); min-height: 100px; align-content: flex-start;
+    border-radius: 10px; margin-bottom: 30px;
+}
+.customer { width: 25px; height: 40px; background: var(--coffee-dark); border-radius: 5px 5px 0 0; animation: walkIn 0.3s ease-out; }
+
+/* Seating Layout */
+.seating-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); gap: 10px; }
+.seat { width: 40px; height: 40px; background: var(--seat-empty); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; transition: 0.4s; color: #888; }
+.seat.occupied { background: var(--seat-full); color: white; transform: scale(1.1); font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+
+/* Right Stats Panel */
+.stats-panel { flex: 1.2; display: flex; flex-direction: column; gap: 15px; }
+.stat-card { background: white; padding: 22px; border-radius: 18px; text-align: center; border-left: 6px solid var(--coffee-mid); box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+.stat-card.takeout { border-left-color: #ffab40; }
+.stat-card.total { background: var(--coffee-dark); color: white; }
+.stat-card label { font-size: 0.75rem; font-weight: bold; opacity: 0.8; letter-spacing: 1px; }
+.stat-value { font-size: 2.2rem; font-weight: bold; margin-top: 8px; }
+
+/* Animations */
+@keyframes walkIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+.floating-text { position: absolute; color: #ffab40; font-weight: bold; font-size: 1.2rem; animation: floatUp 1s ease-out forwards; pointer-events: none; z-index: 100; }
+@keyframes floatUp { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-80px); opacity: 0; } }
